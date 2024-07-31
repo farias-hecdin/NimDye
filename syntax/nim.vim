@@ -84,8 +84,9 @@ for conditional in nimConditionals
 endfor
 
 syn match nimOperator +[.][.]+
-syn match nimOperator +[-=+/<>@$~&%|!?^\\]*[=]+
-syn match nimOperator "[-+/<>@$~&%|!?^\\]*"
+syn match nimOperator "\\>="
+syn match nimOperator "[-=+/<>@$~&%|!?^\\]\?="
+syn match nimOperator "[-+/<>@$~&%|!?^\\]"
 syn match nimOperator "[∙∘×★⊗⊘⊙⊛⊠⊡∩∧⊓]" " same priority as * (multiplication)
 syn match nimOperator "[±⊕⊖⊞⊟∪∨⊔]" " same priority as + (addition)
 
@@ -217,8 +218,7 @@ if nim_highlight_builtins == 1
   endfor
 
   let custom_types = [
-        \ 'i8', 'i16', 'i32', 'i64', 'u8', 'u16', 'u32', 'u64', 'f32', 'f64',
-        \ 'uP', 'Sz', 'str', 'cstr'
+        \ 'i8', 'i16', 'i32', 'i64', 'u8', 'u16', 'u32', 'u64', 'f32', 'f64', 'uP', 'Sz', 'str', 'cstr'
         \ ]
 
   for keyword in custom_types
@@ -242,6 +242,7 @@ if nim_highlight_builtins == 1
   endfor
 
   " Special matches
+  syn match nimBuiltin "\zs\s\<\L[a-zA-Z0-9_]\+"
   syn match nimFunction "\.\<[a-zA-Z0-9_]\+\ze("
   syn match nimFunction "\<\l[a-zA-Z0-9_]\+\ze("
   syn match nimConstructor "\<\L[a-zA-Z0-9_]\+\ze("
@@ -294,7 +295,7 @@ endif
 
 " Highlight special variables if enabled
 if nim_highlight_special_vars
-  syn keyword nimSpecialVar result
+  syn keyword nimSpecialVar result it
 endif
 
 " Sync settings
