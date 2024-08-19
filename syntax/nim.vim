@@ -24,7 +24,7 @@ if exists('nim_highlight_all')
 endif
 
 " Define regions and matches
-syn match nimType "\<[A-Z]\w*"
+syn match nimBuiltin "\<[A-Z]\w*"
 syn region nimBrackets contained extend keepend matchgroup=Bold start=+\(\\\)\@<!\[+ end=+]\|$+ skip=+\\\s*$\|\(\\\)\@<!\\]+ contains=@tclCommandCluster
 
 " Define keywords
