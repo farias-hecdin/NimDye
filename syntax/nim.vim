@@ -28,7 +28,7 @@ syn match nimBuiltin "\<[A-Z]\w*"
 syn region nimBrackets contained extend keepend matchgroup=Bold start=+\(\\\)\@<!\[+ end=+]\|$+ skip=+\\\s*$\|\(\\\)\@<!\\]+ contains=@tclCommandCluster
 
 " Define keywords
-let nimKeywords = ['and', 'asm', 'atomic', 'bind', 'block', 'break', 'concept', 'const', 'continue', 'converter', 'defer', 'discard', 'discardable', 'distinct', 'do', 'end', 'enum', 'except', 'export', 'finally', 'for', 'from', 'func', 'import', 'interface', 'iterator', 'let', 'macro', 'method', 'mixin', 'not', 'object', 'out', 'proc', 'raise', 'ref', 'return', 'template', 'try', 'tuple', 'type', 'using', 'var', 'vtptr', 'vtref', 'when', 'while', 'with', 'without', 'yield']
+let nimKeywords = ['and', 'asm', 'atomic', 'div', 'bind', 'block', 'break', 'concept', 'const', 'continue', 'converter', 'defer', 'discard', 'discardable', 'distinct', 'do', 'end', 'enum', 'except', 'export', 'finally', 'for', 'from', 'func', 'import', 'interface', 'iterator', 'let', 'macro', 'method', 'mixin', 'not', 'notin', 'or', 'object', 'out', 'proc', 'raise', 'ref', 'return', 'template', 'try', 'tuple', 'type', 'using', 'var', 'vtptr', 'vtref', 'when', 'while', 'with', 'without', 'yield']
 for keyword in nimKeywords
   execute 'syn keyword nimKeyword ' . keyword
 endfor
@@ -53,7 +53,7 @@ syn match nimOperator +[.][.]+
 syn match nimOperator "\\>="
 syn match nimOperator "[-=+/<>@$~&%|!?^\\]\?="
 syn match nimOperator "[-+/<>@$~&%|!?^\\]"
-syn match nimOperator "[∙∘×★⊗⊘⊙⊛⊠⊡∩∧⊓]" " same priority as * (multiplication)
+syn match nimOperator "[∙∘×★⊗⊘⊙⊛ ⊠⊡∩∧⊓]" " same priority as * (multiplication)
 syn match nimOperator "[±⊕⊖⊞⊟∪∨⊔]" " same priority as + (addition)
 
 " Define comments and TODOs
@@ -135,19 +135,19 @@ if nim_highlight_builtins == 1
   endfor
 
   " Special matches
-  syn match nimBuiltin "\zs\s\<\L[a-zA-Z0-9_]\+"
-  syn match nimKeyword "\zs\sin\s"
-  syn match nimKeyword "\(\s\|\^\)\<algo\>"
-  syn match nimFunction "\.\<[a-zA-Z0-9]\+\ze("
-  syn match nimFunction "\<\l[a-zA-Z0-9]\+\ze("
-  syn match nimFunction "\<\l[a-zA-Z0-9]\+\ze\*("
-  syn match nimConstructor "\s*[A-Z][a-zA-Z0-9]\+\ze("
-
   syn match nimBuiltin "\<contains\>"
+  syn match nimBuiltin "\zs\s\<\L[a-zA-Z0-9_]\+"
+  syn match nimConstructor "\s*[A-Z][a-zA-Z0-9_]\+\ze("
+  syn match nimFunction "\.\<[a-zA-Z0-9_]\+\ze("
+  syn match nimFunction "\<\l[a-zA-Z0-9_]\+\ze\[T"
+  syn match nimFunction "\<\l[a-zA-Z0-9_]\+\ze\*\[T"
+  syn match nimFunction "\<\l[a-zA-Z0-9_]\+\ze("
+  syn match nimFunction "\<\l[a-zA-Z0-9_]\+\ze\*("
   syn match nimKeyword "\<compile:"
+  syn match nimKeyword "\<emit:"
   syn match nimKeyword "\<header:"
   syn match nimKeyword "\<size:"
-  syn match nimKeyword "\<emit:"
+  syn match nimKeyword "\zs\sin\s"
 endif
 
 if nim_highlight_exceptions == 1
@@ -157,7 +157,6 @@ if nim_highlight_exceptions == 1
   for elem in defects + errors
     execute 'syn keyword nimBuiltin ' . elem
   endfor
-
   " Any User error possible
   syn match nimException '\<[A-Z]\w*Error\>'
   syn match nimException '\<[A-Z]\w*Defect\>'
