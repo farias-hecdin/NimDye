@@ -1,6 +1,6 @@
-# NimTinyHighlight
+# NimSyntax
 
-Este plugin ofrece un resaltador de sintaxis para el lenguaje `Nim`. Está diseñado para ser utilizado con el editor texto Neovim/Vim. Aunque NimTinyHighlight es un resaltador de sintaxis muy pequeño y no tan avanzado como herramientas como Tree-sitter, es rápido y puede serte útil si tienes problemas de resaltado con otros plugins similares.
+Este plugin proporciona un resaltador de sintaxis para el lenguaje [Nim](https://nim-lang.org/). Está diseñado para usarse con `Neovim` o `Vim`. Aunque NimSyntax es un resaltador pequeño y no tan avanzado como herramientas como [Tree-sitter](https://github.com/nvim-treesitter/nvim-treesitter), es rápido y puede ser útil si tienes problemas de resaltado con otros plugins similares.
 
 ## 🗒️ Requerimientos
 
@@ -12,7 +12,7 @@ Usando [`folke/lazy.nvim`](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-    "farias-hecdin/NimTinyHighlight",
+    "farias-hecdin/NimSyntax",
     ft = "nim",
 },
 ```
@@ -29,5 +29,4 @@ Usando [`folke/lazy.nvim`](https://github.com/folke/lazy.nvim):
 
 ## 🛡️ Licencia
 
-NimTinyHighlight está bajo la licencia MIT. Consulta el archivo `LICENSE` para obtener más información.
-
+NimSyntax está bajo la licencia MIT. Consulta el archivo `LICENSE` para obtener más información.
